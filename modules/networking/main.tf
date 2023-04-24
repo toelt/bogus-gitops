@@ -26,5 +26,5 @@ module "vpc" {
   azs             = local.azs
   private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 4, k)]
 
-  tags = local.tags
+  # tags = local.tags
 }
