@@ -20,7 +20,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "4.0.1"
 
-  name = local.name
+  name = "bogus-vpc"
   cidr = local.vpc_cidr
 
   azs             = ["us-east-2a","us-east-2b"]
