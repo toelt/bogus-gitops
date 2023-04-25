@@ -3,11 +3,11 @@
 Configuration in this directory creates:
 
 - ECS cluster using Fargate (on-demand and spot) capacity providers
-- Example ECS service that utilizes
+<!-- - Example ECS service that utilizes
   - AWS Firelens using FluentBit sidecar container definition
   - Service connect configuration
   - Load balancer target group attachment
-  - Security group for access to the example service
+  - Security group for access to the example service -->
 
 ## Usage
 

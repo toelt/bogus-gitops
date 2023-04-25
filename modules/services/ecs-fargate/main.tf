@@ -26,19 +26,12 @@ module "ecs_cluster" {
   # Capacity provider
   fargate_capacity_providers = {
     FARGATE = {
-      default_capacity_provider_strategy = {
-        weight = 50
-        base   = 20
-      }
+      default_capacity_provider_strategy = {}
     }
     FARGATE_SPOT = {
-      default_capacity_provider_strategy = {
-        weight = 50
-      }
+      default_capacity_provider_strategy = {}
     }
   }
-
-  tags = local.tags
 }
 
 module "ecs_service" {
@@ -46,26 +39,13 @@ module "ecs_service" {
   version = "5.0.0"
 
   name        = local.name
-  cluster_arn = module.ecs_cluster.arn
+  cluster_arn = var.cluster_arn.arn
 
   cpu    = 1024
   memory = 4096
 
   # Container definition(s)
   container_definitions = {
-
-    fluent-bit = {
-      cpu       = 512
-      memory    = 1024
-      essential = true
-      image     = nonsensitive(data.aws_ssm_parameter.fluentbit.value)
-      firelens_configuration = {
-        type = "fluentbit"
-      }
-      memory_reservation = 50
-      user               = "0"
-    }
-
     (local.container_name) = {
       cpu       = 512
       memory    = 1024
@@ -83,21 +63,7 @@ module "ecs_service" {
       # Example image used requires access to write to root filesystem
       readonly_root_filesystem = false
 
-      dependencies = [{
-        containerName = "fluent-bit"
-        condition     = "START"
-      }]
-
       enable_cloudwatch_logging = false
-      log_configuration = {
-        logDriver = "awsfirelens"
-        options = {
-          Name                    = "firehose"
-          region                  = local.region
-          delivery_stream         = "my-stream"
-          log-driver-buffer-limit = "2097152"
-        }
-      }
       memory_reservation = 100
     }
   }
@@ -109,7 +75,7 @@ module "ecs_service" {
       container_port   = local.container_port
     }
   } */
-
+/* 
   subnet_ids = module.vpc.private_subnets
   security_group_rules = {
     alb_ingress_3000 = {
@@ -127,7 +93,7 @@ module "ecs_service" {
       protocol    = "-1"
       cidr_blocks = ["0.0.0.0/0"]
     }
-  }
+  } */
 }
 /* 
 data "aws_ssm_parameter" "fluentbit" {
