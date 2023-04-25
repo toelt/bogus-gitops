@@ -19,6 +19,7 @@ module "ecs" {
 
   cluster_name = local.name
 
+  default_capacity_provider_use_fargate = true
   # Capacity provider
   fargate_capacity_providers = {
     FARGATE = {}
@@ -26,6 +27,11 @@ module "ecs" {
 
   # tags = local.tags
   }
+}
+
+module "hello_world" {
+  source = "./service-hello-world"
+  cluster_id = var.cluster_id
 }
 /*
 module "ecs_disabled" {

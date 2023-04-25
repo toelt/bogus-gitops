@@ -6,7 +6,7 @@
 
 module "ecs-fargate" {
   source = "./modules/services/ecs-fargate"
-  # vpc_id = module.networking.vpc_id
+  cluster_id = module.ecs-fargate.cluster_id
 }
 
 /* 

@@ -1,5 +1,5 @@
-variable "vpc_id" {
-    description = "VPC ID to tie your cluster to"
+variable "cluster_id" {
+    description = "ECS cluster ID to tie other configurations to."
     type = string
     default = ""
 }
