@@ -1,3 +1,7 @@
+# macOS shit
+.DS_Store
+modules/.DS_Store
+
 # Local .terraform directories
 **/.terraform/*
 
