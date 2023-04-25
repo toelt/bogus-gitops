@@ -1,16 +1,19 @@
-module "networking" {
+/* 
+  module "networking" {
   source = "./modules/networking"
-}
+} 
+*/
 
 module "ecs-fargate" {
   source = "./modules/services/ecs-fargate"
-  vpc_id = module.networking.vpc_id
+  # vpc_id = module.networking.vpc_id
 }
 
-module "ecr" {
+/* 
+  module "ecr" {
   source = "./modules/services/ecr"
-  
-}
+} *
+/
 
 /* module "rds" {
   source = "./modules/services/rds"

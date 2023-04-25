@@ -26,7 +26,7 @@ module "ecs" {
       }
     }
   }
-/*
+
   services = {
     ecsdemo-frontend = {
       cpu    = 1024
@@ -93,7 +93,7 @@ module "ecs" {
         }
       }
 
-/*      
+/*       
       load_balancer = {
         service = {
           target_group_arn = "arn:aws:elasticloadbalancing:eu-west-1:1234567890:targetgroup/bluegreentarget1/209a844cd01825a4"
@@ -101,7 +101,7 @@ module "ecs" {
           container_port   = 80
         }
       } 
-*/
+ */
 /*
       subnet_ids = ["subnet-abcde012", "subnet-bcde012a", "subnet-fghi345a"]
       security_group_rules = {
