@@ -9,6 +9,10 @@ module "ecs-fargate" {
   cluster_id = module.ecs-fargate.cluster_id
 }
 
+module "s3" {
+  source = "./modules/s3"
+}
+
 /* 
   module "ecr" {
   source = "./modules/services/ecr"
