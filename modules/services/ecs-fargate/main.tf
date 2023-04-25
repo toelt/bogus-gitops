@@ -101,26 +101,14 @@ module "ecs_service" {
       memory_reservation = 100
     }
   }
-
-  service_connect_configuration = {
-    namespace = aws_service_discovery_http_namespace.this.arn
-    service = {
-      client_alias = {
-        port     = local.container_port
-        dns_name = local.container_name
-      }
-      port_name      = local.container_name
-      discovery_name = local.container_name
-    }
-  }
-
+/* 
   load_balancer = {
     service = {
       target_group_arn = element(module.alb.target_group_arns, 0)
       container_name   = local.container_name
       container_port   = local.container_port
     }
-  }
+  } */
 
   subnet_ids = module.vpc.private_subnets
   security_group_rules = {
@@ -140,10 +128,8 @@ module "ecs_service" {
       cidr_blocks = ["0.0.0.0/0"]
     }
   }
-
-  tags = local.tags
 }
-
+/* 
 data "aws_ssm_parameter" "fluentbit" {
   name = "/aws/service/aws-for-fluent-bit/stable"
 }
@@ -152,7 +138,7 @@ resource "aws_service_discovery_http_namespace" "this" {
   name        = local.name
   description = "CloudMap namespace for ${local.name}"
   tags        = local.tags
-}
+} */
 /*
 module "alb_sg" {
   source  = "terraform-aws-modules/security-group/aws"

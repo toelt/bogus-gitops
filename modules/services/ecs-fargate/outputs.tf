@@ -1,8 +1,4 @@
-################################################################################
-# Cluster
-################################################################################
-
-output "cluster_arn" {
+/* output "cluster_arn" {
   description = "ARN that identifies the cluster"
   value       = module.ecs_cluster.arn
 }
@@ -26,10 +22,6 @@ output "cluster_autoscaling_capacity_providers" {
   description = "Map of capacity providers created and their attributes"
   value       = module.ecs_cluster.autoscaling_capacity_providers
 }
-
-################################################################################
-# Service
-################################################################################
 
 output "service_id" {
   description = "ARN that identifies the service"
@@ -130,3 +122,4 @@ output "service_autoscaling_scheduled_actions" {
   description = "Map of autoscaling scheduled actions and their attributes"
   value       = module.ecs_service.autoscaling_scheduled_actions
 }
+ */
