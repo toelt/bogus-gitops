@@ -7,6 +7,11 @@ module "ecs-fargate" {
   vpc_id = module.networking.vpc_id
 }
 
+module "ecr" {
+  source = "./modules/services/ecr"
+  
+}
+
 /* module "rds" {
   source = "./modules/services/rds"
   vpc_id = module.networking.vpc_id
