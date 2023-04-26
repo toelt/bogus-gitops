@@ -49,3 +49,5 @@ resource "null_resource" "db_setup" {
     interpreter = ["bash", "-c"]
   }
 }
+
+# WITH OPEN SOURCE MODULES

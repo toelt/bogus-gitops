@@ -1,7 +1,7 @@
 module "networking" {
   source = "./modules/networking"
 } 
-
+ 
 module "ecs-fargate" {
   source = "./modules/services/ecs-fargate"
 }
