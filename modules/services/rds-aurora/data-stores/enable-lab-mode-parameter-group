@@ -1,0 +1,8 @@
+aws rds create-db-parameter-group \
+--db-parameter-group-name aurora-lab-mode \
+--db-parameter-group-family aurora-mysql5.7 \
+--description "Enable Aurora lab mode" \
+
+aws rds modify-db-paramater-group \
+--db-parameter-group-name aurora-lab-mode \
+--parameters "ParameterName=aurora_lab_mode,ParameterValue=1,ApplyMethod=pending-reboot"
