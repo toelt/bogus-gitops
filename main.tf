@@ -1,16 +1,14 @@
-/* 
-  module "networking" {
+module "networking" {
   source = "./modules/networking"
 } 
-*/
 /* 
 module "ecs-fargate" {
   source = "./modules/services/ecs-fargate"
 }
  */
-module "s3" {
+/* module "s3" {
   source = "./modules/s3"
-}
+} */
 
 /* 
   module "ecr" {
