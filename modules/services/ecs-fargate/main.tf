@@ -17,6 +17,7 @@ module "ecs_cluster" {
   version = "5.0.0"
 
   cluster_name = "ecs-fargate"
+  
 
   fargate_capacity_providers = {
     FARGATE = {}
@@ -29,7 +30,7 @@ module "ecs_cluster" {
   version = "5.0.0"
 
   name        = "pinger-service"
-  cluster_arn = module.ecs_cluster.arn
+  cluster_arn = "arn:aws:ecs:us-east-2:450494728275:cluster/ecs-fargate"
 
   cpu    = 1024
   memory = 4096
