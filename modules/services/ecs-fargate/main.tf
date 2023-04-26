@@ -7,7 +7,7 @@ locals {
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 2)
 
-  container_name = "ecsdemo-pinger"
+  container_name = "pinger"
   container_port = 3000
 
 }
@@ -25,6 +25,24 @@ module "ecs_cluster" {
   }
 }
 
+resource "aws_ecs_task_definition" "test" {
+  family                   = "test"
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  cpu                      = 1024
+  memory                   = 2048
+    container_definitions    = <<TASK_DEFINITION
+[
+  {
+    "name": "",
+    "image": "",
+    "cpu": 1024,
+    "memory": 2048,
+    "essential": true
+  }
+]
+TASK_DEFINITION
+}
 /* module "ecs_service" {
   source  = "terraform-aws-modules/ecs/aws//modules/service"
   version = "5.0.0"
