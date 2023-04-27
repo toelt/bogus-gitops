@@ -7,7 +7,7 @@ module "networking" {
 } */
 
 /* module "s3" {
-  source = "./modules/s3"
+  source = "./global/s3"
 } */
 
 module "ecr" {
