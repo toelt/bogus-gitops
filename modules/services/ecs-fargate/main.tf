@@ -21,11 +21,10 @@ module "ecs_cluster" {
   
 
   fargate_capacity_providers = {
-    FARGATE = {}
     FARGATE_SPOT = {}
   }
 }
-
+/* 
 resource "aws_ecs_task_definition" "test" {
   family                   = "test"
   requires_compatibilities = ["FARGATE"]
@@ -35,8 +34,8 @@ resource "aws_ecs_task_definition" "test" {
 
   container_definitions = jsonencode([
     {
-      name      = "first"
-      image     = "service-first"
+      name      = "hello"
+      image     = "450494728275.dkr.ecr.us-east-2.amazonaws.com/ecr-bogus-gitops:latest"
       cpu       = 10
       memory    = 512
       essential = true
@@ -46,32 +45,36 @@ resource "aws_ecs_task_definition" "test" {
           hostPort      = 80
         }
       ]
-    },
-    {
-      name      = "second"
-      image     = "service-second"
-      cpu       = 10
-      memory    = 256
-      essential = true
-      portMappings = [
-        {
-          containerPort = 443
-          hostPort      = 443
-        }
-      ]
     }
   ])
+} */
+/* 
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+} */
+/* 
+resource "aws_ecs_task_definition" "bogus-service" {
+  family                   = ""
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  cpu                      = ""
+  memory                   = ""
+  task_role_arn            = ""
+  execution_role_arn       = ""
 
-  volume {
-    name      = "service-storage"
-    host_path = "/ecs/service-storage"
-  }
+  container_definitions = <<DEFINITION
+  [
+    {
+      "cpu": 1024,
+      "image": "450494728275.dkr.ecr.us-east-2.amazonaws.com/ecr-bogus-gitops:latest",
+      "memory": 2048,
+      "name": "ecr-image",
+      "networkMode": "awsvpc"
+    }
+  ]
+  DEFINITION
+} */
 
-  placement_constraints {
-    type       = "memberOf"
-    expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
-  }
-}
 /* module "ecs_service" {
   source  = "terraform-aws-modules/ecs/aws//modules/service"
   version = "5.0.0"
