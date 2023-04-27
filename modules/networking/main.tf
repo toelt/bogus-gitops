@@ -25,6 +25,10 @@ module "vpc" {
 
   azs             = ["us-east-2a","us-east-2b"]
   private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 4, k)]
+  public_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 4, k + 4)]
+
+  enable_nat_gateway = true
+  single_nat_gateway = true
 
   # tags = local.tags
 }
