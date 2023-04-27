@@ -1,7 +1,7 @@
 # secret to store the password
-resource "aws_secretsmanager_secret" "db-pass" {
-  name = "db-pass-${random_id.id.hex}"
-}
+# resource "aws_secretsmanager_secret" "db-pass" {
+#  name = "db-pass-${random_id.id.hex}"
+# }
 
 # initial value
 resource "aws_secretsmanager_secret_version" "db-pass-val" {
