@@ -30,6 +30,7 @@ resource "aws_rds_cluster" "cluster" {
     min_capacity = 1
   }
 }
+
 resource "null_resource" "db_setup" {
   triggers = {
     file = filesha1("initial.sql")
