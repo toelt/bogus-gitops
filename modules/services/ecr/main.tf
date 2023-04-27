@@ -18,6 +18,8 @@ module "ecr" {
 
   repository_image_tag_mutability = "MUTABLE"
 
+  repository_image_scan_on_push = false
+
   repository_read_write_access_arns = [data.aws_caller_identity.current.arn]
   create_lifecycle_policy           = true
   repository_lifecycle_policy = jsonencode({
