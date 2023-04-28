@@ -1,18 +1,18 @@
-module "networking" {
+/* module "networking" {
   source = "./modules/networking"
-} 
+}  */
  
-module "ecs-fargate" {
+/* module "ecs-fargate" {
   source = "./modules/services/ecs-fargate"
-}
+} */
 
 /* module "s3" {
   source = "./global/s3"
 } */
 
-module "ecr" {
+/* module "ecr" {
   source = "./modules/services/ecr"
-}
+} */
 
 /* module "rds-aurora" {
   source = "./modules/services/rds-aurora"
