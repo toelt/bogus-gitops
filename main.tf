@@ -14,8 +14,8 @@ module "ecr" {
   source = "./modules/services/ecr"
 }
 
-/* module "rds-aurora" {
+module "rds-aurora" {
   source = "./modules/services/rds-aurora"
-  vpc_id = module.networking.vpc_id
-  private_subnets = module.networking.private_subnets
-} */
+  # vpc_id = module.networking.vpc_id
+  # private_subnets = module.networking.private_subnets
+}
