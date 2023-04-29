@@ -21,12 +21,14 @@ module "ecs_cluster" {
   
 
   fargate_capacity_providers = {
-    FARGATE = {}
+    FARGATE = {
+      weight = 1
+    }
     FARGATE_SPOT = {}
   }
 }
 
-resource "aws_ecs_task_definition" "test" {
+/* resource "aws_ecs_task_definition" "test" {
   family                   = "test"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -52,3 +54,16 @@ execution_role_arn = "arn:aws:iam::450494728275:role/ecsTaskExecutionRole"
   }
 }
 
+resource "aws_ecs_service" "test" {
+  name = "nginx"
+  cluster = "arn:aws:ecs:us-east-2:450494728275:cluster/ecs-fargate"
+  task_definition = "arn:aws:ecs:us-east-2:450494728275:task-definition/test:2"
+
+  launch_type = "FARGATE"
+
+  
+  network_configuration {
+    subnets = [ "subnet-0e03ad310876394fb","subnet-030d5d6a6b6a1a806" ]
+    assign_public_ip = false
+  }
+} */
