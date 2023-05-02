@@ -5,10 +5,10 @@ module "ec2_spot_instance" {
   name                 = "${local.name}-spot-instance"
   create_spot_instance = true
 
-  availability_zone           = element(module.vpc.azs, 0)
-  subnet_id                   = element(module.vpc.private_subnets, 0)
-  vpc_security_group_ids      = [module.security_group.security_group_id]
-  associate_public_ip_address = true
+  availability_zone           = element(module.vpc.azs, 0) # change that to your networking
+  subnet_id                   = element(module.vpc.private_subnets, 0) # same as brevious
+  vpc_security_group_ids      = [module.security_group.security_group_id] # ...
+  associate_public_ip_address = false # why?
 
   # Spot request specific attributes
   spot_price                          = "0.1"
@@ -45,6 +45,4 @@ module "ec2_spot_instance" {
       # kms_key_id  = aws_kms_key.this.arn # you must grant the AWSServiceRoleForEC2Spot service-linked role access to any custom KMS keys
     }
   ]
-
-  tags = local.tags
 }
