@@ -7,13 +7,11 @@ locals {
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 2)
 
-  /* 
+ 
     tags = {
-    Example    = local.name
-    GithubRepo = "terraform-aws-vpc"
-    GithubOrg  = "terraform-aws-modules"
+    ManagedBy    = "Terraform"
+    GithubRepo = "toelt/bogus-gitops"
   } 
-*/
 }
 
 module "vpc" {
@@ -29,6 +27,8 @@ module "vpc" {
 
   enable_nat_gateway = true
   single_nat_gateway = true
+
+  enable_dhcp_options = true
 
   # tags = local.tags
 }

@@ -111,11 +111,10 @@ module "aurora_mysql_v2" {
   engine_version    = "8.0"
   storage_encrypted = true
 
-  vpc_id               = module.vpc.vpc_id
-  db_subnet_group_name = module.vpc.database_subnet_group_name
+  vpc_id               = var.vpc_id
   security_group_rules = {
     vpc_ingress = {
-      cidr_blocks = module.vpc.private_subnets_cidr_blocks
+      cidr_blocks = var.private_subnets_cidr_blocks
     }
   }
 

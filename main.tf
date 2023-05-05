@@ -20,6 +20,6 @@ module "ecr" {
 #   # private_subnets = module.networking.private_subnets
 # }
 
-# module "rds-aurora-serverless" {
-#   source = "./modules/services/rds-aurora-serverless"
-# }
+module "rds-aurora-serverless" {
+  source = "./modules/services/rds-aurora-serverless"
+}
