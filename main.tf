@@ -2,9 +2,9 @@ module "networking" {
   source = "./modules/networking"
 }
  
-# module "ecs-fargate" {
-#   source = "./modules/services/ecs-fargate"
-# }
+module "ecs-fargate" {
+  source = "./modules/services/ecs-fargate"
+}
 
 module "s3" {
   source = "./global/s3"
