@@ -2,13 +2,14 @@ data "aws_availability_zones" "available" {}
 
 locals {
   name   = "ex-${basename(path.cwd)}"
-  region = "eu-east-2"
+  region = "us-east-2"
 
   vpc_cidr = "10.0.0.0/16"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
 
   tags = {
     Example    = local.name
+    ManagedBy  = "Terraform"
     GithubRepo = "terraform-aws-rds-aurora"
     GithubOrg  = "terraform-aws-modules"
   }
@@ -63,18 +64,18 @@ module "aurora_mysql" {
 
   create = false
 
-  name              = "${local.name}-mysql"
-  engine            = "aurora-mysql"
-  engine_mode       = "serverless"
-  storage_encrypted = true
+  # name              = "${local.name}-mysql"
+  # engine            = "aurora-mysql"
+  # engine_mode       = "serverless"
+  # storage_encrypted = true
 
-  vpc_id               = module.vpc.vpc_id
-  db_subnet_group_name = module.vpc.database_subnet_group_name
-  security_group_rules = {
-    vpc_ingress = {
-      cidr_blocks = module.vpc.private_subnets_cidr_blocks
-    }
-  }
+  # vpc_id               = 
+  # db_subnet_group_name = database_subnet_group_name
+  # security_group_rules = {
+  #   vpc_ingress = {
+  #     cidr_blocks = 
+  #   }
+  # }
 
   monitoring_interval = 60
 
@@ -102,6 +103,8 @@ module "aurora_mysql_v2" {
   source  = "terraform-aws-modules/rds-aurora/aws"
   version = "8.0.2"
 
+  create = true
+
   name              = "${local.name}-mysqlv2"
   engine            = "aurora-mysql"
   engine_mode       = "provisioned"
@@ -128,7 +131,7 @@ module "aurora_mysql_v2" {
 
   instance_class = "db.serverless"
   instances = {
-    one = {}
+    bogus = {}
   }
 }
 
