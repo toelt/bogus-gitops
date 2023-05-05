@@ -6,9 +6,9 @@ module "networking" {
 #   source = "./modules/services/ecs-fargate"
 # }
 
-/* module "s3" {
+module "s3" {
   source = "./global/s3"
-} */
+}
 
 # module "ecr" {
 #   source = "./modules/services/ecr"
