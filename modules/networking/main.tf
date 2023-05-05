@@ -30,5 +30,8 @@ module "vpc" {
 
   enable_dhcp_options = true
 
+  create_database_subnet_group = true
+  create_database_subnet_route_table = true
+
   # tags = local.tags
 }
