@@ -28,7 +28,7 @@ module "ecs_cluster" {
   }
 }
 
-/* resource "aws_ecs_task_definition" "test" {
+resource "aws_ecs_task_definition" "test" {
   family                   = "test"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -38,7 +38,7 @@ module "ecs_cluster" {
 [
   {
     "name": "nginx",
-    "image": "450494728275.dkr.ecr.us-east-2.amazonaws.com/nginx:latest",
+    "image": "450494728275.dkr.ecr.us-east-2.amazonaws.com/nginx",
     "cpu": 1024,
     "memory": 2048,
     "essential": true
@@ -66,4 +66,5 @@ resource "aws_ecs_service" "test" {
     subnets = [ "subnet-0e03ad310876394fb","subnet-030d5d6a6b6a1a806" ]
     assign_public_ip = false
   }
-} */
+  depends_on = [ aws_ecs_task_definition.test ]
+}
