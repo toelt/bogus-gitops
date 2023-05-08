@@ -28,8 +28,8 @@ module "ecs_cluster" {
   }
 }
 
-resource "aws_ecs_task_definition" "test" {
-  family                   = "test"
+resource "aws_ecs_task_definition" "tf_test_nginx" {
+  family                   = "tf-bogus-nginx"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = 1024
@@ -37,8 +37,8 @@ resource "aws_ecs_task_definition" "test" {
   container_definitions    = <<TASK_DEFINITION
 [
   {
-    "name": "nginx",
-    "image": "450494728275.dkr.ecr.us-east-2.amazonaws.com/nginx",
+    "name": "tf-bogus-nginx",
+    "image": "nginx:latest",
     "cpu": 1024,
     "memory": 2048,
     "essential": true
@@ -54,17 +54,18 @@ execution_role_arn = "arn:aws:iam::450494728275:role/ecsTaskExecutionRole"
   }
 }
 
-resource "aws_ecs_service" "test" {
-  name = "nginx"
+resource "aws_ecs_service" "tf_test_nginx" {
+  name = "tf-bogus-nginx"
   cluster = "arn:aws:ecs:us-east-2:450494728275:cluster/ecs-fargate"
-  task_definition = "arn:aws:ecs:us-east-2:450494728275:task-definition/test:2"
+  task_definition = "arn:aws:ecs:us-east-2:450494728275:task-definition/tf-bogus-nginx:1arn:aws:ecs:us-east-2:450494728275:task-definition/tf-bogus-nginx:1"
 
   launch_type = "FARGATE"
 
+  desired_count = 1
   
   network_configuration {
-    subnets = [ "subnet-0e03ad310876394fb","subnet-030d5d6a6b6a1a806" ]
+    subnets = [ "subnet-0cbcced3a58e34aa0","subnet-04d30015347c1fa42" ]
     assign_public_ip = false
   }
-  depends_on = [ aws_ecs_task_definition.test ]
+  depends_on = [ aws_ecs_task_definition.tf_test_nginx ]
 }
