@@ -10,9 +10,9 @@ module "networking" {
 #   source = "./global/s3"
 # }
 
-module "ecr" {
-  source = "./modules/services/ecr"
-}
+# module "ecr" {
+#   source = "./modules/services/ecr"
+# }
 
 # module "rds-aurora" {
 #   source = "./modules/services/rds-aurora"

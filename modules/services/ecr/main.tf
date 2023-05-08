@@ -1,6 +1,11 @@
 locals {
   region = "us-east-2"
   name   = "ecr-${replace(basename(path.cwd), "_", "-")}"
+
+  tags = {
+    ManagedBy = "Terraform"
+    Project = "Bogus GitOps"
+  }
   }
 
 data "aws_caller_identity" "current" {}
