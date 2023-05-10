@@ -5,7 +5,7 @@ module "networking" {
 # module "ecr" {
 #   source = "./modules/services/ecr"
 # }
- 
+
 # module "ecs-fargate" {
 #   source = "./modules/services/ecs-fargate"
 # }
