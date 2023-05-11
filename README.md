@@ -1,3 +1,3 @@
 # bogus-gitops
 
-![alt text](htts://github.com/toelt/bogus-aws.drawio.png)
+![alt text](./bogus-aws.drawio.png)
