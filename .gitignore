@@ -2,6 +2,9 @@
 .DS_Store
 modules/.DS_Store
 
+# .env files
+.env
+
 # Local .terraform directories
 **/.terraform/*
 
