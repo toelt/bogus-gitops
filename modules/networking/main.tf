@@ -1,3 +1,8 @@
+//TODO Add Terraform lifecycle constraints to resources created and need locking (elastic IP, NAT, IGW ...)
+# lifecycle {
+#   prevent_destroy = true
+# }
+
 data "aws_availability_zones" "available" {
   state = "available"
 }
@@ -8,7 +13,8 @@ data "aws_security_group" "default" {
 }
 
 locals {
-  name   = "ex_${basename(path.cwd)}"
+  name   = "ex_${local.tags.Project}"
+  # "ex_${basename(path.cwd)}"
   region = "us-east-1"
 
   vpc_cidr = "10.0.0.0/16"
@@ -45,7 +51,7 @@ module "vpc" {
 
   cidr = local.vpc_cidr
 
-  name = "ex_${local.tags.Project}"
+  name = "local.name"
   # "ex_${basename(path.cwd)}"
 
   manage_default_vpc = false
@@ -53,18 +59,18 @@ module "vpc" {
   # default_vpc_enable_dns_hostnames = true
   # default_vpc_enable_dns_support = true
   
-  azs             = ["us-east-2a","us-east-2b"]
+  azs             = ["us-east-1a","us-east-1b"]
 
   private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k)]
-  private_subnet_names = []
+  # private_subnet_names = []
   private_subnet_suffix = "_subnet_private"
 
   public_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 2)]
-  public_subnet_names = []
+  # public_subnet_names = []
   public_subnet_suffix = "_subnet_public"
 
   database_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 4)]
-  database_subnet_names = []
+  # database_subnet_names = []
   database_subnet_suffix = "_subnet_db"
   database_subnet_group_name = "bogus_dev_db_subnet_group"
 
