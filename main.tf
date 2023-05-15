@@ -1,6 +1,9 @@
-module "networking" {
-  source = "./modules/networking"
-}
+#
+# YOU CAN'T DEPLOY ANYTHING BEFORE YOU HAVE CONFIGURED LIFECYCLE FOR ELASTIC IP, NAT GATEWAY ETC!
+#
+# module "vpc" {
+#   source = "./modules/vpc"
+# }
 
 # module "ecr" {
 #   source = "./modules/services/ecr"
@@ -18,8 +21,4 @@ module "networking" {
 #   source = "./modules/services/rds-aurora"
 #   # vpc_id = module.networking.vpc_id
 #   # private_subnets = module.networking.private_subnets
-# }
-
-# module "rds-aurora-serverless" {
-#   source = "./modules/services/rds-aurora-serverless"
 # }

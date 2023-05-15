@@ -81,8 +81,8 @@ module "vpc" {
   create_database_subnet_route_table     = false
   create_database_internet_gateway_route = false
 
-  manage_default_security_group = true
-  manage_default_route_table = true
+  manage_default_security_group = false
+  manage_default_route_table = false
 
 
 
