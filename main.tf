@@ -1,9 +1,8 @@
-#
 # YOU CAN'T DEPLOY ANYTHING BEFORE YOU HAVE CONFIGURED LIFECYCLE FOR ELASTIC IP, NAT GATEWAY ETC!
-#
-# module "vpc" {
-#   source = "./modules/vpc"
-# }
+
+module "vpc" {
+  source = "./modules/vpc"
+}
 
 # module "ecr" {
 #   source = "./modules/services/ecr"
