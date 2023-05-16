@@ -110,10 +110,6 @@ locals {
   }
 }
 
-################################################################################
-# VPC Module
-################################################################################
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "4.0.2"
@@ -122,7 +118,7 @@ module "vpc" {
   cidr = local.vpc_cidr
 
   azs             = local.azs
-  private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 2, k)]
+  private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 4, k)]
 
   tags = local.tags
 }
